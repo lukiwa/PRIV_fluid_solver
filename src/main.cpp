@@ -1,7 +1,10 @@
 #include <iostream>
+#include "Array2D.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    //test
+    Array2D<int> arr(5);
+
+
+
     return 0;
 }

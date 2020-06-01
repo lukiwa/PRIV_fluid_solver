@@ -20,7 +20,7 @@ if (UNIX)
         message(STATUS "SFML_VERSION: ${SFML_VERSION}")
     endif ()
 
-    add_executable(PRIV_fluid_solver src/main.cpp)
+    add_executable(PRIV_fluid_solver src/main.cpp include/Array2D.h src/Fluid.cpp include/Fluid.h)
     target_link_libraries(PRIV_fluid_solver sfml-graphics sfml-window sfml-system)
 
 endif ()

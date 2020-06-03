@@ -6,7 +6,7 @@
 
 
 enum class BoundarySymbol {
-    UP, DOWN, LEFT, RIGHT
+    UP, DOWN, SIDE
 };
 
 

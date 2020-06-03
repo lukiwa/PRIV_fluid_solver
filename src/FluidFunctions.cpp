@@ -73,8 +73,8 @@ void fluid::Project(Array2D<double> &velocity_x, Array2D<double> &velocity_y, Ar
     }
 
     //TODO double check this
-    SetBoundaryConditions(BoundarySymbol::UP, divergence, size);
-    SetBoundaryConditions(BoundarySymbol::UP, p, size);
+    SetBoundaryConditions(BoundarySymbol::SIDE, divergence, size);
+    SetBoundaryConditions(BoundarySymbol::SIDE, p, size);
     LinearSolve(BoundarySymbol::UP, p, divergence, 1, 6, iterations, size);
 
 
@@ -90,8 +90,8 @@ void fluid::Project(Array2D<double> &velocity_x, Array2D<double> &velocity_y, Ar
     }
 
     //TODO double check this
-    SetBoundaryConditions(BoundarySymbol::LEFT, velocity_x, size);
-    SetBoundaryConditions(BoundarySymbol::RIGHT, velocity_y, size);
+    SetBoundaryConditions(BoundarySymbol::UP, velocity_x, size);
+    SetBoundaryConditions(BoundarySymbol::DOWN, velocity_y, size);
 
 }
 
@@ -150,3 +150,37 @@ void fluid::Advect(BoundarySymbol bound, Array2D<double> &density, Array2D<doubl
     SetBoundaryConditions(bound, density, size);
 }
 
+/**todo
+ * @brief Set boundaries near the box edges
+ * @param bound on which edge boundaries will be set
+ * @param velocity field to set boundaries
+ * @param size size of the box
+ */
+void fluid::SetBoundaryConditions(BoundarySymbol bound, Array2D<double> &velocity, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        if (bound == BoundarySymbol::DOWN) {
+            velocity(i, 0) = -velocity(i, 1);
+            velocity(i, size - 1) = -velocity(i, size - 2);
+        } else {
+            velocity(i, 0) = velocity(i, 1);
+            velocity(i, size - 1) = velocity(i, size - 2);
+        }
+    }
+    for (int j = 0; j < size - 1; ++j) {
+        if (bound == BoundarySymbol::UP) {
+            velocity(0, j) = -velocity(1, j);
+            velocity(size - 1, j) = -velocity(size - 2, j);
+        } else {
+            velocity(0, j) = velocity(1, j);
+            velocity(size - 1, j) = velocity(size - 2, j);
+        }
+    }
+
+    //boundaries at the corners
+    velocity(0, 0) = 0.5f * (velocity(1, 0) + velocity(0, 1));
+    velocity(0, size - 1) = 0.5f * (velocity(1, size - 1) + velocity(0, size - 2));
+    velocity(size - 1, 0) = 0.5f * (velocity(size - 2, 0) + velocity(size - 1, 1));
+    velocity(size - 1, size - 1) = 0.5f * (velocity(size - 2, size - 1) + velocity(size - 1, size - 2));
+
+
+}

@@ -8,6 +8,7 @@ Fluid::Fluid(int size, float dt, float diffusion, float viscosity) : _size(size)
                                                                      _dt(dt),
                                                                      _diffusion(diffusion),
                                                                      _viscosity(viscosity),
+                                                                     _prev_density(size),
                                                                      _density(size),
                                                                      _velocity_x(size),
                                                                      _velocity_y(size),
@@ -38,10 +39,27 @@ void Fluid::AddVelocity(int x, int y, float amount_x, float amount_y) {
     _velocity_y(x, y) += amount_y;
 }
 
-/** TODO
+
+/**
  * @brief Calculates fluid state at next time step - determined by _dt
  */
 void Fluid::Step() {
+    fluid::Diffuse(BoundarySymbol::UP, _prev_velocity_x, _velocity_x, _viscosity, _dt, 4, _size);
+    fluid::Diffuse(BoundarySymbol::DOWN, _prev_velocity_y, _velocity_y, _viscosity, _dt, 4, _size);
 
+
+    fluid::Project(_prev_velocity_x, _prev_velocity_y, _velocity_x, _velocity_y, 4, _size);
+
+
+    fluid::Advect(BoundarySymbol::UP, _velocity_x, _prev_velocity_x, _prev_velocity_x,
+                  _prev_velocity_y, _dt, _size);
+    fluid::Advect(BoundarySymbol::DOWN, _velocity_y, _prev_velocity_y, _prev_velocity_x,
+                  _prev_velocity_y, _dt, _size);
+
+
+    fluid::Project(_velocity_x, _velocity_y, _prev_velocity_x, _prev_velocity_y, 4, _size);
+
+    fluid::Diffuse(BoundarySymbol::SIDE, _prev_density, _density, _diffusion, _dt, 4, _size);
+    fluid::Advect(BoundarySymbol::SIDE, _density, _prev_density, _velocity_x, _velocity_y, _dt, _size);
 }
 

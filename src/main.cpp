@@ -6,7 +6,6 @@
 #define WSL_ALLOW_DISPLAY setenv("DISPLAY", "127.0.0.1:0", true)
 
 int main() {
-    //test
     WSL_ALLOW_DISPLAY;
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 

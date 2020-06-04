@@ -15,7 +15,10 @@ Fluid::Fluid(int size, float dt, float diffusion, float viscosity) : _size(size)
                                                                      _prev_velocity_x(size),
                                                                      _prev_velocity_y(size) {
 
+
+
 }
+
 
 /**
  * @brief Adds dye intensity at given point
@@ -62,4 +65,5 @@ void Fluid::Step() {
     fluid::Diffuse(BoundarySymbol::SIDE, _prev_density, _density, _diffusion, _dt, 4, _size);
     fluid::Advect(BoundarySymbol::SIDE, _density, _prev_density, _velocity_x, _velocity_y, _dt, _size);
 }
+
 

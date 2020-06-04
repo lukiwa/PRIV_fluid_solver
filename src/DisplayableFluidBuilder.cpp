@@ -4,6 +4,12 @@
 
 #include "DisplayableFluidBuilder.h"
 
+DisplayableFluidBuilder::DisplayableFluidBuilder() :
+        _size(0),
+        _dt(0.1),
+        _diffusion(0),
+        _viscosity(0) {}
+
 DisplayableFluidBuilder &DisplayableFluidBuilder::Size(int size) {
     _size = size;
     return *this;
@@ -37,3 +43,4 @@ DisplayableFluidBuilder &DisplayableFluidBuilder::CreateWindow() {
 DisplayableFluid DisplayableFluidBuilder::Build() {
     return DisplayableFluid(_size, _dt, _diffusion, _viscosity, std::move(_window));
 }
+

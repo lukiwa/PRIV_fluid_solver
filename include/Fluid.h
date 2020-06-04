@@ -15,6 +15,7 @@
 class Fluid {
 
 
+protected:
     int _size;
     double _dt;
     double _diffusion;
@@ -27,7 +28,6 @@ class Fluid {
     Array2D<double> _velocity_y;
     Array2D<double> _prev_velocity_x;
     Array2D<double> _prev_velocity_y;
-protected:
     Fluid(int size, float dt, float diffusion, float viscosity);
 
 public:

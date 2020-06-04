@@ -17,6 +17,7 @@ class DisplayableFluidBuilder {
 
 
 public:
+    DisplayableFluidBuilder();
 
     DisplayableFluidBuilder &Size(int size);
 

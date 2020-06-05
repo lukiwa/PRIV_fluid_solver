@@ -32,15 +32,12 @@ DisplayableFluidBuilder &DisplayableFluidBuilder::Viscosity(double viscosity) {
 
 }
 
-DisplayableFluidBuilder &DisplayableFluidBuilder::CreateWindow() {
-    if (_size == 0) {
-        throw std::logic_error("You must set size prior to creating a window");
-    }
-    _window = std::make_unique<sf::RenderWindow>(sf::VideoMode(_size, _size), "Fluid Solver");
+DisplayableFluidBuilder &DisplayableFluidBuilder::CreateWindow(sf::RenderWindow *window) {
+    _window = std::move(window);
     return *this;
 }
 
 DisplayableFluid DisplayableFluidBuilder::Build() {
-    return DisplayableFluid(_size, _dt, _diffusion, _viscosity, std::move(_window));
+    return DisplayableFluid(_size, _dt, _diffusion, _viscosity, _window);
 }
 

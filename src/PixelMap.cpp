@@ -2,6 +2,7 @@
 // Created by Lukasz on 04.06.2020.
 //
 
+#include <iostream>
 #include "PixelMap.h"
 
 
@@ -18,5 +19,15 @@ void PixelMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 }
 
 void PixelMap::SetPixelDensity(int x, int y, int density) {
-    _pixels[(x + y * _size) + 4] = density;
+
+    _pixels[4 * (x + y * _size)] = 0;
+    _pixels[4 * (x + y * _size) + 1] = 0;
+    _pixels[4 * (x + y * _size) + 2] = 0;
+    if (density > 255) {
+        _pixels[4 * (x + y * _size) + 3] = 255;
+    } else {
+        _pixels[4 * (x + y * _size) + 3] = density;
+    }
+
+
 }

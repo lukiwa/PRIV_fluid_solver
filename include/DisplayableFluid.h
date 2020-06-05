@@ -13,11 +13,11 @@ class DisplayableFluidBuilder;
 class DisplayableFluid : public Fluid {
     friend class DisplayableFluidBuilder;
 
-    std::unique_ptr<sf::RenderWindow> _window;
+    sf::RenderWindow* _window;
     PixelMap _pixel_map;
 
 
-    DisplayableFluid(int size, float dt, float diffusion, float viscosity, std::unique_ptr<sf::RenderWindow> window);
+    DisplayableFluid(int size, float dt, float diffusion, float viscosity, sf::RenderWindow* window);
 
 public:
 

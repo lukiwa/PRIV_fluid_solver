@@ -13,7 +13,7 @@ class DisplayableFluidBuilder {
     double _dt;
     double _diffusion;
     double _viscosity;
-    std::unique_ptr<sf::RenderWindow> _window;
+    sf::RenderWindow *_window;
 
 
 public:
@@ -27,7 +27,7 @@ public:
 
     DisplayableFluidBuilder &Viscosity(double viscosity);
 
-    DisplayableFluidBuilder &CreateWindow();
+    DisplayableFluidBuilder &CreateWindow(sf::RenderWindow *window);
 
     DisplayableFluid Build();
 };

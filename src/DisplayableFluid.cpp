@@ -4,24 +4,39 @@
 
 #include "DisplayableFluid.h"
 
-DisplayableFluid::DisplayableFluid(int size, float dt, float diffusion, float viscosity,
-                                   sf::RenderWindow *window)
-        : Fluid(size, dt, diffusion, viscosity), _window(window), _pixel_map(size) {}
+DisplayableFluid::DisplayableFluid(int size, double dt, double diffusion, double viscosity, double fade_degree,
+                                   sf::RenderWindow &window)
+        : Fluid(size, dt, diffusion, viscosity),
+          _window(window),
+          _pixel_map(size),
+          fade_degree(fade_degree) {}
 
+
+/**
+ * @brief Gets fluid state (density at each point) and draws it into the window
+ */
 void DisplayableFluid::Render() {
+
+    Step();
+
     for (int i = 0; i < _size; ++i) {
         for (int j = 0; j < _size; ++j) {
-            _pixel_map.SetPixelDensity(i, j, _density(i, j));
+            _pixel_map.SetPixel(i, j, _density(i, j));
         }
     }
-    _window->draw(_pixel_map);
+    Fade();
+    _window.draw(_pixel_map);
+
 }
 
+/**
+ * @brief Fluid cells will lightly disappear
+ */
 void DisplayableFluid::Fade() {
     for (int i = 0; i < _size; ++i) {
         for (int j = 0; j < _size; ++j) {
-            if (_density(i, j) > 1) {
-                _density(i, j) -= 0.1;
+            if (_density(i, j) > fade_degree) {
+                _density(i, j) -= fade_degree;
             }
         }
     }

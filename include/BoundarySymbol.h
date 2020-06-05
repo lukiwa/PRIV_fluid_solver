@@ -4,7 +4,9 @@
 
 #pragma once
 
-
+/**
+ * @brief Represents edge in which boundary conditions wil be calculated
+ */
 enum class BoundarySymbol {
     UP, DOWN, SIDE
 };

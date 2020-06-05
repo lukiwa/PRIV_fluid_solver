@@ -72,7 +72,6 @@ void fluid::Project(Array2D<double> &velocity_x, Array2D<double> &velocity_y, Ar
         }
     }
 
-    //TODO double check this
     SetBoundaryConditions(BoundarySymbol::SIDE, divergence, size);
     SetBoundaryConditions(BoundarySymbol::SIDE, p, size);
     LinearSolve(BoundarySymbol::UP, p, divergence, 1, 6, iterations, size);
@@ -89,7 +88,6 @@ void fluid::Project(Array2D<double> &velocity_x, Array2D<double> &velocity_y, Ar
         }
     }
 
-    //TODO double check this
     SetBoundaryConditions(BoundarySymbol::UP, velocity_x, size);
     SetBoundaryConditions(BoundarySymbol::DOWN, velocity_y, size);
 
@@ -150,7 +148,7 @@ void fluid::Advect(BoundarySymbol bound, Array2D<double> &density, Array2D<doubl
     SetBoundaryConditions(bound, density, size);
 }
 
-/**todo
+/**
  * @brief Set boundaries near the box edges
  * @param bound on which edge boundaries will be set
  * @param velocity field to set boundaries

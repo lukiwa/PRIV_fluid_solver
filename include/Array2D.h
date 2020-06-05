@@ -25,17 +25,16 @@ public:
         std::copy(other.array, other.array + other._size, array);
     }
 
-    int GetSize() {
-        return _size;
-    }
-
-
     Array2D &operator=(const Array2D &other) {
         if (&other != this) {
             _size = other._size;
             std::copy(other.array, other.array + other._size, array);
         }
         return *this;
+    }
+
+    int GetSize() {
+        return _size;
     }
 
 

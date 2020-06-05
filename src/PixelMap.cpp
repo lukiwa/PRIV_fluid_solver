@@ -18,7 +18,13 @@ void PixelMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(_sprite);
 }
 
-void PixelMap::SetPixelDensity(int x, int y, int density) {
+/**
+ * @brief Set given pixel density (amount of dark "dye")
+ * @param x x coord of fluid
+ * @param y y coord of fluid
+ * @param density density of "dye" at given point
+ */
+void PixelMap::SetPixel(int x, int y, int density) {
 
     _pixels[4 * (x + y * _size)] = 0;
     _pixels[4 * (x + y * _size) + 1] = 0;

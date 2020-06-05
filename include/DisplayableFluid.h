@@ -10,14 +10,21 @@
 
 class DisplayableFluidBuilder;
 
+/**
+ * @brief Represents fluid which can be displayed in sf::RenderWindow
+ */
 class DisplayableFluid : public Fluid {
     friend class DisplayableFluidBuilder;
 
-    sf::RenderWindow* _window;
-    PixelMap _pixel_map;
+    sf::RenderWindow &_window; //window in which fluid will be displayed
+    PixelMap _pixel_map; //all fluid cells represented as pixels
+    double fade_degree; //how much the fluid will fade in time
 
 
-    DisplayableFluid(int size, float dt, float diffusion, float viscosity, sf::RenderWindow* window);
+    DisplayableFluid(int size, double dt, double diffusion, double viscosity, double fade_degree,
+                     sf::RenderWindow &window);
+
+    void Fade();
 
 public:
 
@@ -25,7 +32,6 @@ public:
 
     void Render();
 
-    void Fade();
 
 };
 

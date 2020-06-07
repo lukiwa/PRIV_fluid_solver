@@ -7,15 +7,15 @@
 
 
 PixelMap::PixelMap(int size) :
-        _size(size),
-        _pixels(size * size * 4) {
+        _pixels(size * size * 4),
+        _size(size) {
     _texture.create(size, size);
 }
 
 void PixelMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     _texture.update(_pixels.data());
     _sprite.setTexture(_texture);
-    target.draw(_sprite);
+    target.draw(_sprite, states);
 }
 
 /**

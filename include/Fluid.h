@@ -27,9 +27,8 @@ protected:
     Array2D<double> _density;
 
 
-    Fluid(int size, double dt, double diffusion, double viscosity);
-
 public:
+    Fluid(int size, double dt, double diffusion, double viscosity);
 
 
     virtual ~Fluid() = default;

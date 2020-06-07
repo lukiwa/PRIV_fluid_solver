@@ -4,12 +4,6 @@
 
 #include "DisplayableFluidBuilder.h"
 
-DisplayableFluidBuilder::DisplayableFluidBuilder() :
-        _size(0),
-        _dt(0.1),
-        _diffusion(0),
-        _viscosity(0),
-        _fade_degree(0) {}
 
 /**
  * @brief Creates DisplayableFluid with set parameters and render window
@@ -39,6 +33,7 @@ DisplayableFluidBuilder &DisplayableFluidBuilder::Diffusion(double diffusion) {
 
 DisplayableFluidBuilder &DisplayableFluidBuilder::Viscosity(double viscosity) {
     _viscosity = viscosity;
+    return *this;
 }
 
 DisplayableFluidBuilder &DisplayableFluidBuilder::Fade(double fade) {

@@ -16,7 +16,7 @@ public:
         array = new T[size * size];
     }
 
-    virtual ~Array2D() {
+     ~Array2D() {
         delete[] array;
     }
 

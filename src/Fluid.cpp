@@ -4,16 +4,16 @@
 
 #include "Fluid.h"
 
-Fluid::Fluid(int size, double dt, double diffusion, double viscosity) : _size(size),
-                                                                        _dt(dt),
+Fluid::Fluid(int size, double dt, double diffusion, double viscosity) : _dt(dt),
                                                                         _diffusion(diffusion),
                                                                         _viscosity(viscosity),
-                                                                        _prev_density(size),
-                                                                        _density(size),
                                                                         _velocity_x(size),
                                                                         _velocity_y(size),
                                                                         _prev_velocity_x(size),
-                                                                        _prev_velocity_y(size) {}
+                                                                        _prev_velocity_y(size),
+                                                                        _size(size),
+                                                                        _prev_density(size),
+                                                                        _density(size) {}
 
 
 /**

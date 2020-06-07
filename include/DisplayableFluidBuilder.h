@@ -9,15 +9,17 @@
 
 class DisplayableFluidBuilder {
 
-    int _size;
-    double _dt;
-    double _diffusion;
-    double _viscosity;
-    double _fade_degree;
+    int _size{0};
+    double _dt{0.1};
+    double _diffusion{0};
+    double _viscosity{0};
+    double _fade_degree{0};
 
 
 public:
-    DisplayableFluidBuilder();
+    DisplayableFluidBuilder() = default;
+
+    ~DisplayableFluidBuilder() = default;
 
     DisplayableFluidBuilder &Size(int size);
 

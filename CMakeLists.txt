@@ -21,7 +21,10 @@ if (UNIX)
         message(STATUS "SFML_VERSION: ${SFML_VERSION}")
     endif ()
 
-    add_executable(PRIV_fluid_solver src/main.cpp include/Array2D.h src/Fluid.cpp include/Fluid.h src/FluidFunctions.cpp include/FluidFunctions.h include/BoundarySymbol.h src/DisplayableFluid.cpp include/DisplayableFluid.h src/DisplayableFluidBuilder.cpp include/DisplayableFluidBuilder.h src/PixelMap.cpp include/PixelMap.h)
+    file(GLOB SOURCES src/*.cpp)
+    set(SOURCES src/main.cpp ${SOURCES})
+    add_executable(PRIV_fluid_solver ${SOURCES})
+
     target_link_libraries(PRIV_fluid_solver sfml-graphics sfml-window sfml-system)
 
 endif ()

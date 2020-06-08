@@ -33,9 +33,9 @@ public:
 
     virtual ~Fluid() = default;
 
-    void AddDensity(int x, int y, float amount);
+    void AddDensity(int x, int y, double amount);
 
-    void AddVelocity(int x, int y, float amount_x, float amount_y);
+    void AddVelocity(int x, int y, double amount_x, double amount_y);
 
     void Step();
 

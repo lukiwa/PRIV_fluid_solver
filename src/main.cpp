@@ -32,8 +32,8 @@ int main() {
         }
 
         //generate random velocities
-        float rand1 = -1.f + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
-        float rand2 = -1.f + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
+        double rand1 = -1.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
+        double rand2 = -1.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
 
         //add some density at the middle of the screen
         for (int i = 0; i < 2; ++i) {

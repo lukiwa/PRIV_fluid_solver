@@ -109,7 +109,7 @@ void fluid::Advect(BoundarySymbol bound, Array2D<double> &density, Array2D<doubl
     double dt_x = dt * (size - 2);
     double dt_y = dt * (size - 2);
 
-    double temp_velocity_x, /* tmp1*/ temp_velocity_y; //tmp2
+    double temp_velocity_x, temp_velocity_y;
     double x, y;
 
     double prev_x, next_x, prev_y, next_y;

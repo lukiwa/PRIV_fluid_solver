@@ -22,7 +22,7 @@ Fluid::Fluid(int size, double dt, double diffusion, double viscosity) : _dt(dt),
  * @param y y coord
  * @param amount amount of dye to be added
  */
-void Fluid::AddDensity(int x, int y, float amount) {
+void Fluid::AddDensity(int x, int y, double amount) {
     _density(x, y) += amount;
 }
 
@@ -33,7 +33,7 @@ void Fluid::AddDensity(int x, int y, float amount) {
  * @param amount_x amount of velocity at x direction
  * @param amount_y amount of velocity at y direction
  */
-void Fluid::AddVelocity(int x, int y, float amount_x, float amount_y) {
+void Fluid::AddVelocity(int x, int y, double amount_x, double amount_y) {
     _velocity_x(x, y) += amount_x;
     _velocity_y(x, y) += amount_y;
 }

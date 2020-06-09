@@ -1,6 +1,6 @@
 # PRIV_fluid_solver
 IN PROGRESS
-Port of Mike Ash Fluid Simulator to C++. Refactored, applied OOP principles. Currently using SFML to display - planning to use OpenGL to send pixels to GPU
+Port of Mike Ash Fluid Simulator to C++. Refactored, applied OOP principles. Currently using SFML to display - planning to use OpenGL.
 ## Original Project
 https://mikeash.com/pyblog/fluid-simulation-for-dummies.html
 

@@ -14,7 +14,10 @@ if (UNIX)
     include_directories(SFML_INCLUDE_DIR)
 
     find_package(SFML 2.5.1 COMPONENTS system window graphics network audio)
+    find_package(OpenGL REQUIRED)
+    find_package(GLUT REQUIRED)
 
+    include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
     if (SFML_FOUND)
         message(STATUS "SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR}")
         message(STATUS "SFML_LIBRARIES: ${SFML_LIBRARIES}")
@@ -25,6 +28,8 @@ if (UNIX)
     set(SOURCES src/main.cpp ${SOURCES})
     add_executable(PRIV_fluid_solver ${SOURCES})
 
+
+    target_link_libraries(PRIV_fluid_solver ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
     target_link_libraries(PRIV_fluid_solver sfml-graphics sfml-window sfml-system)
 
 endif ()

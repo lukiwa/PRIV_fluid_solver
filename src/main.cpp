@@ -1,19 +1,68 @@
 #include <iostream>
+#include <chrono>
 #include "Array2D.h"
 #include "SFML/Graphics.hpp"
 #include "DisplayableFluidBuilder.h"
+#include "SFML/OpenGL.hpp"
 
 //if using Windows Subsystem for Linux - this allows viewing sfml
 #define WSL_ALLOW_DISPLAY setenv("DISPLAY", "127.0.0.1:0", true)
 
+void FluidTest();
+
+void OpenGLTest();
+
 int main() {
-
-
     WSL_ALLOW_DISPLAY;
+    //OpenGLTest();
+    FluidTest();
+    return 0;
+}
+
+void OpenGLTest() {
+
+    sf::Window window(sf::VideoMode(800, 600), "OpenGL",
+                      sf::Style::Default, sf::ContextSettings(32));
+    window.setVerticalSyncEnabled(true);
+
+
+    window.setActive(true);
+
+
+    bool running = true;
+    sf::Event event;
+
+    while (running) {
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                running = false;
+            } else if (event.type == sf::Event::Resized) {
+                glViewport(0, 0, event.size.width, event.size.height);
+            }
+        }
+
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glBegin(GL_POINTS);
+        glColor4b(0, 0, 0, 12);
+        glVertex2i(100, 100);
+        glEnd();
+
+        window.display();
+    }
+
+
+}
+
+
+void FluidTest() {
+
+
     DisplayableFluidBuilder builder;
     sf::RenderWindow window;
+    window.setFramerateLimit(30);
     auto fluid = builder.Size(200).
-            TimeStep(0.25).
+            TimeStep(2).
             Diffusion(0.0000001).
             Viscosity(0.0000001).
             Fade(0.5).
@@ -22,9 +71,16 @@ int main() {
 
     sf::Event event;
 
+    auto start = std::chrono::system_clock::now();
+    auto end = std::chrono::system_clock::now();
 
     while (window.isOpen()) {
+        end = std::chrono::system_clock::now();
+        std::chrono::duration<float> diff = end - start;
+        start = end;
 
+
+        window.setTitle("Fluid simulator " + std::to_string(int(1.0f / diff.count())) + " fps");
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::EventType::Closed) {
                 window.close();
@@ -47,5 +103,4 @@ int main() {
         window.display();
     }
 
-    return 0;
 }

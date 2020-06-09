@@ -125,12 +125,12 @@ void fluid::Advect(BoundarySymbol bound, Array2D<double> &density, Array2D<doubl
             y = j - temp_velocity_y;
 
             if (x < 0.5) { x = 0.5; }
-            if (x > size + 0.5) { x = size + 0.5; }
+            if (x > size + 0.5) { x = size - 2; }
             prev_x = std::floor(x);
             next_x = prev_x + 1;
 
             if (y < 0.5) { y = 0.5; }
-            if (y > size + 0.5) { y = size + 0.5; }
+            if (y > size + 0.5) { y = size - 2 ; }
             prev_y = std::floor(y);
             next_y = prev_y + 1;
 

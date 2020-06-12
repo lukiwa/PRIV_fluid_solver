@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "PixelMap.h"
-
+#include "SFML/OpenGL.hpp"
 
 PixelMap::PixelMap(int size) :
         _pixels(size * size * 4),
@@ -37,3 +37,12 @@ void PixelMap::SetPixel(int x, int y, int density) {
 
 
 }
+
+void PixelMap::DrawGL() {
+    _texture.update(_pixels.data());
+
+
+    sf::Texture::bind(NULL);
+}
+
+

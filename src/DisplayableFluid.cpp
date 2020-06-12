@@ -21,12 +21,15 @@ void DisplayableFluid::Render() {
 
     for (int i = 0; i < _size; ++i) {
         for (int j = 0; j < _size; ++j) {
+
             _pixel_map.SetPixel(i, j, _density(i, j));
+
+
         }
     }
-    Fade();
-    _window.draw(_pixel_map);
-
+     Fade();
+    _pixel_map.DrawGL();
+    //_window.draw(_pixel_map);
 }
 
 /**
@@ -41,3 +44,4 @@ void DisplayableFluid::Fade() {
         }
     }
 }
+

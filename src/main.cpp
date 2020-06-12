@@ -23,6 +23,7 @@ void OpenGLTest() {
 
     sf::Window window(sf::VideoMode(800, 600), "OpenGL",
                       sf::Style::Default, sf::ContextSettings(32));
+    GLuint a;
     window.setVerticalSyncEnabled(true);
 
 
@@ -62,7 +63,7 @@ void FluidTest() {
     sf::RenderWindow window;
     window.setFramerateLimit(30);
     auto fluid = builder.Size(200).
-            TimeStep(2).
+            TimeStep(0.25).
             Diffusion(0.0000001).
             Viscosity(0.0000001).
             Fade(0.5).
@@ -94,7 +95,7 @@ void FluidTest() {
         //add some density at the middle of the screen
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 2; ++j) {
-                fluid.AddDensity(window.getSize().x / 2, window.getSize().y / 2, std::rand() % 150);
+                fluid.AddDensity(window.getSize().x / 2 , window.getSize().y / 2 , std::rand() % 150);
             }
         }
         fluid.AddVelocity(window.getSize().x / 2, window.getSize().y / 2, rand1, rand2);

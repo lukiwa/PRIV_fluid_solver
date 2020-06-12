@@ -18,6 +18,7 @@ public:
     void SetPixel(int x, int y, int density);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+    void DrawGL();
 };
 
 

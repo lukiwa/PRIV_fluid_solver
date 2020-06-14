@@ -15,8 +15,8 @@ int main() {
     auto fluid = builder.Size(200).
             TimeStep(0.25).
             Diffusion(0.0000001).
-            Viscosity(0.0000001).
-            Fade(0.5).
+            Viscosity(0.000001).
+            Fade(0.1).
             Build(window);
 
 
@@ -36,9 +36,9 @@ int main() {
         double rand2 = -1.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
 
         //add some density at the middle of the screen
-        for (int i = 0; i < 2; ++i) {
-            for (int j = 0; j < 2; ++j) {
-                fluid.AddDensity(window.getSize().x / 2, window.getSize().y / 2, std::rand() % 150);
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j) {
+                fluid.AddDensity(window.getSize().x / 2 + i, window.getSize().y / 2 + j, std::rand() % 150);
             }
         }
         fluid.AddVelocity(window.getSize().x / 2, window.getSize().y / 2, rand1, rand2);

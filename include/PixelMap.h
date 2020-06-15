@@ -11,9 +11,10 @@ class PixelMap : public sf::Drawable {
     mutable sf::Texture _texture;
     mutable sf::Sprite _sprite;
     int _size;
+    double _scale;
 
 public:
-    explicit PixelMap(int size);
+    explicit PixelMap(int size, double scale);
 
     void SetPixel(int x, int y, int density);
 

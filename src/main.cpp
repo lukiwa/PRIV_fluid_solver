@@ -12,11 +12,13 @@ int main() {
     WSL_ALLOW_DISPLAY;
     DisplayableFluidBuilder builder;
     sf::RenderWindow window;
-    auto fluid = builder.Size(200).
+    const double scale = 3;
+    auto fluid = builder.Size(600).
             TimeStep(0.25).
             Diffusion(0.0000001).
             Viscosity(0.000001).
             Fade(0.1).
+            Scale(scale).
             Build(window);
 
 
@@ -32,16 +34,17 @@ int main() {
         }
 
         //generate random velocities
-        double rand1 = -1.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
-        double rand2 = -1.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (1.f + 1.f)));
+        double rand1 = -5.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (5.f + 5.f)));
+        double rand2 = -5.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (5.f + 5.f)));
 
         //add some density at the middle of the screen
-        for (int i = 0; i < 5; ++i) {
-            for (int j = 0; j < 5; ++j) {
-                fluid.AddDensity(window.getSize().x / 2 + i, window.getSize().y / 2 + j, std::rand() % 150);
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
+                fluid.AddDensity(window.getSize().x / scale / 2 + i, window.getSize().y / scale / 2 + j,
+                                 std::rand() % 150);
             }
         }
-        fluid.AddVelocity(window.getSize().x / 2, window.getSize().y / 2, rand1, rand2);
+        fluid.AddVelocity(window.getSize().x / scale / 2, window.getSize().y / scale / 2, rand1, rand2);
         window.clear(sf::Color::White);
         fluid.Render();
         window.display();

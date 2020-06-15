@@ -12,8 +12,9 @@
  * @return DisplayableFluid object
  */
 DisplayableFluid DisplayableFluidBuilder::Build(sf::RenderWindow &window) const {
-    window.create(sf::VideoMode(_size, _size), "Fluid");
-    return DisplayableFluid(_size, _dt, _diffusion, _viscosity, _fade_degree, window);
+    window.create(sf::VideoMode(_size , _size ), "Fluid");
+    return DisplayableFluid( _size / _scale, _scale, _dt, _diffusion, _viscosity,
+                            _fade_degree, window);
 }
 
 DisplayableFluidBuilder &DisplayableFluidBuilder::Size(int size) {
@@ -38,6 +39,11 @@ DisplayableFluidBuilder &DisplayableFluidBuilder::Viscosity(double viscosity) {
 
 DisplayableFluidBuilder &DisplayableFluidBuilder::Fade(double fade) {
     _fade_degree = fade;
+    return *this;
+}
+
+DisplayableFluidBuilder &DisplayableFluidBuilder::Scale(double scale) {
+    _scale = scale;
     return *this;
 }
 

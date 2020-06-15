@@ -4,12 +4,14 @@
 
 #include "DisplayableFluid.h"
 
-DisplayableFluid::DisplayableFluid(int size, double dt, double diffusion, double viscosity, double fade_degree,
+DisplayableFluid::DisplayableFluid(int size, double scale, double dt, double diffusion, double viscosity,
+                                   double fade_degree,
                                    sf::RenderWindow &window)
         : Fluid(size, dt, diffusion, viscosity),
           _window(window),
-          _pixel_map(size),
-          fade_degree(fade_degree) {}
+          _pixel_map(size, scale),
+          fade_degree(fade_degree),
+          _scale(scale) {}
 
 
 /**

@@ -14,6 +14,7 @@ class DisplayableFluidBuilder {
     double _diffusion{0};
     double _viscosity{0};
     double _fade_degree{0};
+    double _scale{1};
 
 
 public:
@@ -30,6 +31,8 @@ public:
     DisplayableFluidBuilder &Viscosity(double viscosity);
 
     DisplayableFluidBuilder &Fade(double fade);
+
+    DisplayableFluidBuilder &Scale(double scale);
 
     DisplayableFluid Build(sf::RenderWindow &window) const;
 };

@@ -16,8 +16,8 @@ int main() {
     auto fluid = builder.Size(600).
             TimeStep(0.25).
             Diffusion(0.0000001).
-            Viscosity(0.000001).
-            Fade(0.1).
+            Viscosity(0.0000001).
+            Fade(0.08).
             Scale(scale).
             Build(window);
 
@@ -41,7 +41,7 @@ int main() {
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 2; ++j) {
                 fluid.AddDensity(window.getSize().x / scale / 2 + i, window.getSize().y / scale / 2 + j,
-                                 std::rand() % 150);
+                                 std::rand() % 200);
             }
         }
         fluid.AddVelocity(window.getSize().x / scale / 2, window.getSize().y / scale / 2, rand1, rand2);

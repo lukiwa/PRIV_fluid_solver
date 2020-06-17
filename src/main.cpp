@@ -2,14 +2,17 @@
 #include "Array2D.h"
 #include "SFML/Graphics.hpp"
 #include "DisplayableFluidBuilder.h"
+#include  "Random.h"
 
 //if using Windows Subsystem for Linux - this allows viewing sfml
 #define WSL_ALLOW_DISPLAY setenv("DISPLAY", "127.0.0.1:0", true)
 
+
 int main() {
 
-
     WSL_ALLOW_DISPLAY;
+    Random::Seed();
+
     DisplayableFluidBuilder builder;
     sf::RenderWindow window;
     const double scale = 3;
@@ -33,18 +36,18 @@ int main() {
             }
         }
 
-        //generate random velocities
-        double rand1 = -5.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (5.f + 5.f)));
-        double rand2 = -5.0 + static_cast <float> (std::rand()) / (static_cast <float> (RAND_MAX / (5.f + 5.f)));
+
 
         //add some density at the middle of the screen
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 2; ++j) {
                 fluid.AddDensity(window.getSize().x / scale / 2 + i, window.getSize().y / scale / 2 + j,
-                                 std::rand() % 200);
+                                 Random::Int(0, 200));
             }
         }
-        fluid.AddVelocity(window.getSize().x / scale / 2, window.getSize().y / scale / 2, rand1, rand2);
+        fluid.AddVelocity(window.getSize().x / scale / 2, window.getSize().y / scale / 2,
+                          Random::Double(-5, 5),
+                          Random::Double(-5, 5));
         window.clear(sf::Color::White);
         fluid.Render();
         window.display();

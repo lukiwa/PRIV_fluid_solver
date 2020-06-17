@@ -22,7 +22,7 @@ if (UNIX)
     endif ()
 
     file(GLOB SOURCES src/*.cpp)
-    set(SOURCES src/main.cpp ${SOURCES})
+    set(SOURCES src/main.cpp ${SOURCES} include/Random.h)
     add_executable(PRIV_fluid_solver ${SOURCES})
 
     target_link_libraries(PRIV_fluid_solver sfml-graphics sfml-window sfml-system)

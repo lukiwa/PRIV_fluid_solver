@@ -30,7 +30,6 @@ protected:
 public:
     Fluid(int size, double dt, double diffusion, double viscosity);
 
-
     virtual ~Fluid() = default;
 
     void AddDensity(int x, int y, double amount);

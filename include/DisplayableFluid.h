@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include "Fluid.h"
 #include "PixelMap.h"
 
@@ -19,9 +19,10 @@ class DisplayableFluid : public Fluid {
     sf::RenderWindow &_window; //window in which fluid will be displayed
     PixelMap _pixel_map; //all fluid cells represented as pixels
     double fade_degree; //how much the fluid will fade in time
+    double _scale;      //scale fluid to the size of the window
 
 
-    DisplayableFluid(int size, double dt, double diffusion, double viscosity, double fade_degree,
+    DisplayableFluid(int size, double scale, double dt, double diffusion, double viscosity, double fade_degree,
                      sf::RenderWindow &window);
 
     void Fade();
@@ -31,6 +32,7 @@ public:
     ~DisplayableFluid() override = default;
 
     void Render();
+
 
 };
 

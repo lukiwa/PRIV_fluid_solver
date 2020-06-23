@@ -4,12 +4,14 @@
 
 #include "DisplayableFluid.h"
 
-DisplayableFluid::DisplayableFluid(int size, double dt, double diffusion, double viscosity, double fade_degree,
+DisplayableFluid::DisplayableFluid(int size, double scale, double dt, double diffusion, double viscosity,
+                                   double fade_degree,
                                    sf::RenderWindow &window)
         : Fluid(size, dt, diffusion, viscosity),
           _window(window),
-          _pixel_map(size),
-          fade_degree(fade_degree) {}
+          _pixel_map(size, scale),
+          fade_degree(fade_degree),
+          _scale(scale) {}
 
 
 /**
@@ -21,15 +23,12 @@ void DisplayableFluid::Render() {
 
     for (int i = 0; i < _size; ++i) {
         for (int j = 0; j < _size; ++j) {
-
             _pixel_map.SetPixel(i, j, _density(i, j));
-
-
         }
     }
-     Fade();
-    _pixel_map.DrawGL();
-    //_window.draw(_pixel_map);
+    Fade();
+    _window.draw(_pixel_map);
+
 }
 
 /**
@@ -44,4 +43,3 @@ void DisplayableFluid::Fade() {
         }
     }
 }
-

@@ -4,16 +4,17 @@
 
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 
 class PixelMap : public sf::Drawable {
     std::vector<sf::Uint8> _pixels; //RGBA format
     mutable sf::Texture _texture;
     mutable sf::Sprite _sprite;
     int _size;
+    double _scale;
 
 public:
-    explicit PixelMap(int size);
+    explicit PixelMap(int size, double scale);
 
     void SetPixel(int x, int y, int density);
 

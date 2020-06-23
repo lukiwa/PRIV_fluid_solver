@@ -6,10 +6,14 @@
 #include "PixelMap.h"
 #include "SFML/OpenGL.hpp"
 
-PixelMap::PixelMap(int size) :
+PixelMap::PixelMap(int size, double scale) :
         _pixels(size * size * 4),
-        _size(size) {
+        _size(size),
+        _scale(scale) {
+    std::fill(_pixels.begin(), _pixels.end(), 0);
     _texture.create(size, size);
+    _sprite.setScale(_scale, _scale);
+
 }
 
 void PixelMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
@@ -25,17 +29,7 @@ void PixelMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
  * @param density density of "dye" at given point
  */
 void PixelMap::SetPixel(int x, int y, int density) {
-
-    _pixels[4 * (x + y * _size)] = 0;
-    _pixels[4 * (x + y * _size) + 1] = 0;
-    _pixels[4 * (x + y * _size) + 2] = 0;
-    if (density > 255) {
-        _pixels[4 * (x + y * _size) + 3] = 255;
-    } else {
-        _pixels[4 * (x + y * _size) + 3] = density;
-    }
-
-
+    _pixels[4 * (x + y * _size) + 3] = std::min(255, density);
 }
 
 void PixelMap::DrawGL() {

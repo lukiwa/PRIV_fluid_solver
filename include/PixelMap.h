@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 
 class PixelMap : public sf::Drawable {
     std::vector<sf::Uint8> _pixels; //RGBA format

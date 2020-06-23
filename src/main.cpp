@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Array2D.h"
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include "DisplayableFluidBuilder.h"
 #include  "Random.h"
 

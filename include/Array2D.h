@@ -5,6 +5,7 @@
 #pragma once
 
 #include <algorithm>
+#include <iostream>
 
 template<typename T>
 class Array2D {
@@ -14,9 +15,10 @@ public:
     explicit Array2D(int size) :
             _size(size) {
         array = new T[size * size];
+        std::fill(array, array + (size * size), 0);
     }
 
-     ~Array2D() {
+    ~Array2D() {
         delete[] array;
     }
 

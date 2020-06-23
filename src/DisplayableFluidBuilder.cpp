@@ -8,7 +8,6 @@
 /**
  * @brief Creates DisplayableFluid with set parameters and render window
  * @param window created render window
- *        NOTE: Window size must correspond to the size of the fluid box!!!
  * @return DisplayableFluid object
  */
 DisplayableFluid DisplayableFluidBuilder::Build(sf::RenderWindow &window) const {
@@ -42,6 +41,9 @@ DisplayableFluidBuilder &DisplayableFluidBuilder::Fade(double fade) {
     return *this;
 }
 
+/**
+ * @brief Determines how much the fluid box will be smaller than the window (2 means fluid box is 2 times smaller)
+ */
 DisplayableFluidBuilder &DisplayableFluidBuilder::Scale(double scale) {
     _scale = scale;
     return *this;

@@ -16,10 +16,10 @@ int main() {
     DisplayableFluidBuilder builder;
     sf::RenderWindow window;
     const double scale = 3;
-    auto fluid = builder.Size(600).
+    auto fluid = builder.Size(500).
             TimeStep(0.25).
             Diffusion(0.0000001).
-            Viscosity(0.0000001).
+            Viscosity(0.00000001).
             Fade(0.08).
             Scale(scale).
             Build(window);

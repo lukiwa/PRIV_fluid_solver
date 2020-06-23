@@ -93,7 +93,7 @@ void fluid::Project(Array2D<double> &velocity_x, Array2D<double> &velocity_y, Ar
 
 }
 
-/**
+/** TODO FIX - some mess down there
  * @brief Moves density and velocities given set of velocities at given point.
  * @param bound bound at which edge boundary conditions will later be set
  * @param density density field
@@ -112,6 +112,7 @@ void fluid::Advect(BoundarySymbol bound, Array2D<double> &density, Array2D<doubl
     double temp_velocity_x, temp_velocity_y;
     double x, y;
 
+
     double prev_x, next_x, prev_y, next_y;
 
     //TODO what is this
@@ -125,19 +126,23 @@ void fluid::Advect(BoundarySymbol bound, Array2D<double> &density, Array2D<doubl
             y = j - temp_velocity_y;
 
             if (x < 0.5) { x = 0.5; }
+            //check array bounds
             if (x > size + 0.5) { x = size - 2; }
-            prev_x = std::floor(x);
+            prev_x = std::min(static_cast<double>(size - 2), std::floor(x));
             next_x = prev_x + 1;
 
             if (y < 0.5) { y = 0.5; }
+            //check array bounds
+
             if (y > size + 0.5) { y = size - 2; }
-            prev_y = std::floor(y);
+            prev_y = std::min(static_cast<double>(size - 2), std::floor(y));
             next_y = prev_y + 1;
 
             s1 = x - prev_x;
             s0 = 1 - s1;
             t1 = y - prev_y;
             t0 = 1 - t1;
+
 
             //TODO double check
             density(i, j) = s0 * (t0 * prev_density(prev_x, prev_y) + t1 * prev_density(prev_x, next_y))

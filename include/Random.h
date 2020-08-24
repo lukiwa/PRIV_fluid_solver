@@ -7,8 +7,9 @@
 #include <random>
 
 class Random {
-    inline static std::mt19937 _random_engine;
+    inline static std::mt19937 _random_engine{};
 public:
+
     static void Seed() {
         _random_engine.seed(std::random_device()());
     }
